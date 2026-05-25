@@ -30,8 +30,8 @@ class _ContactUsFormbodyState extends State<ContactUsFormbody> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      spacing: 8,
+    return ListView(
+      shrinkWrap: true,
       children: [
         ResponsiveRowColumn(
           layout: ResponsiveRowColumnType.ROW,

@@ -31,6 +31,7 @@ class _HomepageState extends State<Homepage> {
     return PageTemplate(
       hasFooter: true,
       child: ListView(
+        primary: true,
         children: [
           SizedBox(
             height: 160,

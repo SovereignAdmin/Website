@@ -14,7 +14,8 @@ class ServicesBody extends StatefulWidget {
 class _ServicesBodyState extends State<ServicesBody> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
+      shrinkWrap: true,
       children: [
         HeaderBodyListFooter(
           title: "Services",

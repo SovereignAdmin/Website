@@ -14,14 +14,19 @@ class PoliciesBody extends StatefulWidget {
 class _PoliciesBodyState extends State<PoliciesBody> {
   @override
   Widget build(BuildContext context) {
-    return HeaderBodyListFooterPair(
-      headersAndFooters1: PaymentPolicyStrings.policyHeaderAndFooter,
-      bodyList1: PaymentPolicyStrings.policiesList,
-      title1: "Payment Policies",
-      headersAndFooters2: DiagnosticPolicyStrings.policyHeaderAndFooter,
-      bodyList2: DiagnosticPolicyStrings.policiesList,
-      title2: "Diagnostic Policies",
-      controller: widget.controller,
+    return ListView(
+      shrinkWrap: true,
+      children: [
+        HeaderBodyListFooterPair(
+          headersAndFooters1: PaymentPolicyStrings.policyHeaderAndFooter,
+          bodyList1: PaymentPolicyStrings.policiesList,
+          title1: "Payment Policies",
+          headersAndFooters2: DiagnosticPolicyStrings.policyHeaderAndFooter,
+          bodyList2: DiagnosticPolicyStrings.policiesList,
+          title2: "Diagnostic Policies",
+          controller: widget.controller,
+        ),
+      ],
     );
   }
 }
