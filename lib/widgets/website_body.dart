@@ -96,13 +96,16 @@ class _WebsiteBodyState extends State<WebsiteBody>
         ),
         ResponsiveRowColumnItem(
           rowFlex: 3,
-          child: switch (pageIndex) {
-            0 => AboutUsBody(isSmallScreen: isSmallScreen, controller: chain),
-            1 => ServicesBody(controller: chain),
-            2 => ContactUsFormbody(initialDate: initialDateTime),
-            3 => PoliciesBody(controller: chain),
-            _ => Container(),
-          },
+          child: SingleChildScrollView(
+            primary: true,
+            child: switch (pageIndex) {
+              0 => AboutUsBody(isSmallScreen: isSmallScreen, controller: chain),
+              1 => ServicesBody(controller: chain),
+              2 => ContactUsFormbody(initialDate: initialDateTime),
+              3 => PoliciesBody(controller: chain),
+              _ => Container(),
+            },
+          ),
         ),
       ],
     );
