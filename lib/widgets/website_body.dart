@@ -97,7 +97,7 @@ class _WebsiteBodyState extends State<WebsiteBody>
         ResponsiveRowColumnItem(
           rowFlex: 3,
           child: SingleChildScrollView(
-            primary: true,
+            primary: false,
             child: switch (pageIndex) {
               0 => AboutUsBody(isSmallScreen: isSmallScreen, controller: chain),
               1 => ServicesBody(controller: chain),
