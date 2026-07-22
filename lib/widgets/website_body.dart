@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:sovereign_solutions/anims/animation_chain_controller.dart';
 import 'package:sovereign_solutions/anims/sequences.dart';
@@ -7,6 +8,8 @@ import 'package:sovereign_solutions/view/page_bodies/about_us_body.dart';
 import 'package:sovereign_solutions/view/page_bodies/contact_us_formbody.dart';
 import 'package:sovereign_solutions/view/page_bodies/policies_body.dart';
 import 'package:sovereign_solutions/view/page_bodies/services_body.dart';
+import 'package:sovereign_solutions/widgets/contact_us_footer.dart';
+import 'package:sovereign_solutions/widgets/logo_text.dart';
 import 'package:sovereign_solutions/widgets/side_bar.dart';
 
 class WebsiteBody extends StatefulWidget {
@@ -72,41 +75,69 @@ class _WebsiteBodyState extends State<WebsiteBody>
       _ => false,
     };
 
-    return ResponsiveRowColumn(
-      layout: isSmallScreen
-          ? ResponsiveRowColumnType.COLUMN
-          : ResponsiveRowColumnType.ROW,
-      rowCrossAxisAlignment: CrossAxisAlignment.start,
-      columnSpacing: 32,
-      rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        ResponsiveRowColumnItem(
-          rowFlex: 1,
-          child: SideBar(
-            deviceResolution: widget.deviceResolution,
-            activeIndex: pageIndex,
-            tabCallbacks: [
-              () => _setTab(0),
-              () => _setTab(1),
-              () => _setTab(2),
-              () => _setTab(3),
-            ],
-            controller: chain,
-          ),
+    return Scaffold(
+      backgroundColor: Color.fromARGB(255, 25, 25, 25),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            SizedBox(
+              height: 160,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  SvgPicture.asset("assets/base-logo.svg"),
+                  SizedBox(width: 9.5),
+                  LogoText(),
+                ],
+              ),
+            ),
+            SizedBox(height: 16),
+            ResponsiveRowColumn(
+              layout: isSmallScreen
+                  ? ResponsiveRowColumnType.COLUMN
+                  : ResponsiveRowColumnType.ROW,
+              rowCrossAxisAlignment: CrossAxisAlignment.start,
+              columnSpacing: 32,
+              rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ResponsiveRowColumnItem(
+                  child: SideBar(
+                    deviceResolution: widget.deviceResolution,
+                    activeIndex: pageIndex,
+                    tabCallbacks: [
+                      () => _setTab(0),
+                      () => _setTab(1),
+                      () => _setTab(2),
+                      () => _setTab(3),
+                    ],
+                    controller: chain,
+                  ),
+                ),
+                ResponsiveRowColumnItem(
+                  child: SingleChildScrollView(
+                    child: switch (pageIndex) {
+                      0 => AboutUsBody(
+                        isSmallScreen: isSmallScreen,
+                        controller: chain,
+                      ),
+                      1 => ServicesBody(controller: chain),
+                      2 => ContactUsFormbody(initialDate: initialDateTime),
+                      3 => PoliciesBody(controller: chain),
+                      _ => Container(),
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
-        ResponsiveRowColumnItem(
-          rowFlex: 3,
-          child: SingleChildScrollView(
-            child: switch (pageIndex) {
-              0 => AboutUsBody(isSmallScreen: isSmallScreen, controller: chain),
-              1 => ServicesBody(controller: chain),
-              2 => ContactUsFormbody(initialDate: initialDateTime),
-              3 => PoliciesBody(controller: chain),
-              _ => Container(),
-            },
-          ),
-        ),
-      ],
+      ),
+      persistentFooterDecoration: BoxDecoration(
+        border: Border.all(color: Colors.white, width: 1),
+      ),
+      bottomNavigationBar: ContactUsFooter(isSmallScreen: isSmallScreen),
     );
   }
 }

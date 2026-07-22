@@ -1,7 +1,9 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:sovereign_solutions/constants/enums.dart';
 import 'package:sovereign_solutions/view/homepage.dart';
 import 'package:sovereign_solutions/view/screen_init.dart';
+import 'package:sovereign_solutions/widgets/website_body.dart';
 
 class HomeLocation extends BeamLocation<BeamState> {
   @override
@@ -9,7 +11,12 @@ class HomeLocation extends BeamLocation<BeamState> {
     final pages = [
       const BeamPage(child: ScreenSetup()),
       if (state.uri.pathSegments.contains("Home"))
-        BeamPage(type: BeamPageType.noTransition, child: Homepage()),
+        BeamPage(
+          type: BeamPageType.noTransition,
+          child: WebsiteBody(
+            deviceResolution: DeviceResolution.getFrom(context),
+          ),
+        ),
     ];
     return pages;
   }
