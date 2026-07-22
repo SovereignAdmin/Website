@@ -131,13 +131,11 @@ class _WebsiteBodyState extends State<WebsiteBody>
                 ),
               ],
             ),
+            SizedBox(height: 64),
+            ContactUsFooter(isSmallScreen: isSmallScreen),
           ],
         ),
       ),
-      persistentFooterDecoration: BoxDecoration(
-        border: Border.all(color: Colors.white, width: 1),
-      ),
-      bottomNavigationBar: ContactUsFooter(isSmallScreen: isSmallScreen),
     );
   }
 }
