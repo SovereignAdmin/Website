@@ -117,7 +117,8 @@ class _WebsiteBodyState extends State<WebsiteBody>
                   ),
                   ResponsiveRowColumnItem(
                     child: SingleChildScrollView(
-                      primary: true,
+                      primary: false,
+                      controller: ScrollController(),
                       child: switch (pageIndex) {
                         0 => AboutUsBody(
                           isSmallScreen: isSmallScreen,
