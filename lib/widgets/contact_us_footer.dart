@@ -9,7 +9,8 @@ class ContactUsFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
+      shrinkWrap: true,
       children: [
         Text(ContactStrings.contactUs[0], style: TextStyles.bodyHeaderText),
         SizedBox(height: 8),
