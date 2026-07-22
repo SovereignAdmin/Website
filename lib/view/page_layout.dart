@@ -64,10 +64,7 @@ class _PageLayoutState extends State<PageLayout>
     };
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 25, 25, 25),
-      body: FittedBox(
-        fit: BoxFit.fill,
-        child: WebsiteBody(deviceResolution: resolution),
-      ),
+      body: FittedBox(fit: BoxFit.fill, child: WebsiteBody()),
       persistentFooterDecoration: BoxDecoration(
         border: Border.all(color: Colors.white, width: 1),
       ),

@@ -13,9 +13,7 @@ import 'package:sovereign_solutions/widgets/logo_text.dart';
 import 'package:sovereign_solutions/widgets/side_bar.dart';
 
 class WebsiteBody extends StatefulWidget {
-  const WebsiteBody({super.key, required this.deviceResolution});
-
-  final DeviceResolution deviceResolution;
+  const WebsiteBody({super.key});
 
   @override
   State<WebsiteBody> createState() => _WebsiteBodyState();
@@ -70,7 +68,8 @@ class _WebsiteBodyState extends State<WebsiteBody>
 
   @override
   Widget build(BuildContext context) {
-    final bool isSmallScreen = switch (widget.deviceResolution) {
+    DeviceResolution resolution = DeviceResolution.getFrom(context);
+    final bool isSmallScreen = switch (resolution) {
       DeviceResolution.mobile || DeviceResolution.tablet => true,
       _ => false,
     };
@@ -105,7 +104,7 @@ class _WebsiteBodyState extends State<WebsiteBody>
                 children: [
                   ResponsiveRowColumnItem(
                     child: SideBar(
-                      deviceResolution: widget.deviceResolution,
+                      deviceResolution: resolution,
                       activeIndex: pageIndex,
                       tabCallbacks: [
                         () => _setTab(0),

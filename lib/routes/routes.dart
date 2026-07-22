@@ -11,12 +11,7 @@ class HomeLocation extends BeamLocation<BeamState> {
     final pages = [
       const BeamPage(child: ScreenSetup()),
       if (state.uri.pathSegments.contains("Home"))
-        BeamPage(
-          type: BeamPageType.noTransition,
-          child: WebsiteBody(
-            deviceResolution: DeviceResolution.getFrom(context),
-          ),
-        ),
+        BeamPage(type: BeamPageType.noTransition, child: WebsiteBody()),
     ];
     return pages;
   }
