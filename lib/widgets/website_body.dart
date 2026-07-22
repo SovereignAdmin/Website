@@ -94,42 +94,44 @@ class _WebsiteBodyState extends State<WebsiteBody>
               ),
             ),
             SizedBox(height: 16),
-            ResponsiveRowColumn(
-              layout: isSmallScreen
-                  ? ResponsiveRowColumnType.COLUMN
-                  : ResponsiveRowColumnType.ROW,
-              rowCrossAxisAlignment: CrossAxisAlignment.start,
-              columnSpacing: 32,
-              rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ResponsiveRowColumnItem(
-                  child: SideBar(
-                    deviceResolution: widget.deviceResolution,
-                    activeIndex: pageIndex,
-                    tabCallbacks: [
-                      () => _setTab(0),
-                      () => _setTab(1),
-                      () => _setTab(2),
-                      () => _setTab(3),
-                    ],
-                    controller: chain,
+            LayoutBuilder(
+              builder: (context, constraints) => ResponsiveRowColumn(
+                layout: isSmallScreen
+                    ? ResponsiveRowColumnType.COLUMN
+                    : ResponsiveRowColumnType.ROW,
+                rowCrossAxisAlignment: CrossAxisAlignment.start,
+                columnSpacing: 32,
+                rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ResponsiveRowColumnItem(
+                    child: SideBar(
+                      deviceResolution: widget.deviceResolution,
+                      activeIndex: pageIndex,
+                      tabCallbacks: [
+                        () => _setTab(0),
+                        () => _setTab(1),
+                        () => _setTab(2),
+                        () => _setTab(3),
+                      ],
+                      controller: chain,
+                    ),
                   ),
-                ),
-                ResponsiveRowColumnItem(
-                  child: SingleChildScrollView(
-                    child: switch (pageIndex) {
-                      0 => AboutUsBody(
-                        isSmallScreen: isSmallScreen,
-                        controller: chain,
-                      ),
-                      1 => ServicesBody(controller: chain),
-                      2 => ContactUsFormbody(initialDate: initialDateTime),
-                      3 => PoliciesBody(controller: chain),
-                      _ => Container(),
-                    },
+                  ResponsiveRowColumnItem(
+                    child: SingleChildScrollView(
+                      child: switch (pageIndex) {
+                        0 => AboutUsBody(
+                          isSmallScreen: isSmallScreen,
+                          controller: chain,
+                        ),
+                        1 => ServicesBody(controller: chain),
+                        2 => ContactUsFormbody(initialDate: initialDateTime),
+                        3 => PoliciesBody(controller: chain),
+                        _ => Container(),
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(height: 64),
             ContactUsFooter(isSmallScreen: isSmallScreen),
