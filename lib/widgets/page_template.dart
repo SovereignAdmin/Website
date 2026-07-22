@@ -20,7 +20,7 @@ class PageTemplate extends StatelessWidget {
         backgroundColor: Color.fromARGB(255, 25, 25, 25),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          child: child,
+          child: ListView(shrinkWrap: true, primary: true, children: [child]),
         ),
         persistentFooterDecoration: BoxDecoration(
           border: Border.all(color: Colors.white, width: 1),
