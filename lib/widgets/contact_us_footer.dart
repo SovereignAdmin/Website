@@ -9,7 +9,8 @@ class ContactUsFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return Container(
+      constraints: BoxConstraints(minHeight: 200),
       color: Color.fromARGB(255, 25, 25, 25),
       child: ListView(
         shrinkWrap: true,
