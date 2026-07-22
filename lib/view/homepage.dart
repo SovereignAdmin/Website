@@ -30,23 +30,25 @@ class _HomepageState extends State<Homepage> {
 
     return PageTemplate(
       hasFooter: true,
-      child: ListView(
+      child: SingleChildScrollView(
         primary: true,
-        children: [
-          SizedBox(
-            height: 160,
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                SvgPicture.asset("assets/base-logo.svg"),
-                SizedBox(width: 9.5),
-                LogoText(),
-              ],
+        child: Column(
+          children: [
+            SizedBox(
+              height: 160,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  SvgPicture.asset("assets/base-logo.svg"),
+                  SizedBox(width: 9.5),
+                  LogoText(),
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 16),
-          WebsiteBody(deviceResolution: resolution),
-        ],
+            SizedBox(height: 16),
+            WebsiteBody(deviceResolution: resolution),
+          ],
+        ),
       ),
     );
   }
